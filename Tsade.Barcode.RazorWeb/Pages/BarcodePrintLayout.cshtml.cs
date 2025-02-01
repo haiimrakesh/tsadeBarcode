@@ -7,12 +7,12 @@ namespace Tsade.Barcode.RazorWeb.Pages
     public class BarcodePrintLayoutModel : PageModel
     {
         [BindProperty]
-        public BarcodeResponse? BarcodeResponse { get; set; }
+        public BarcodeRequest? BarcodeRequest { get; set; }
 
-        public IActionResult OnGetPrint(BarcodeResponse barcodeResponse)
+        public IActionResult OnGetPrint(BarcodeRequest barcodeRequest)
         {
             // Initialization code if needed
-            BarcodeResponse = barcodeResponse;
+            BarcodeRequest = barcodeRequest;
             return Page();
         }
     }

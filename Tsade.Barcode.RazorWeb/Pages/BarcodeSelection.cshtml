@@ -1,0 +1,16 @@
+@page
+@model Tsade.Barcode.RazorWeb.Pages.BarcodeSelectionModel
+@{
+    ViewData["Title"] = "Barcode Selection";
+}
+
+@{
+    foreach(var barcodeSelection in Model.BarcodeSelections)
+    {
+        <div>
+            <img src="@barcodeSelection.ImageUrl" />
+            <a href="BarcodeRequest?BarcodeText=@barcodeSelection.BarcodeText">
+            @barcodeSelection.BarcodeText</a>
+        </div>
+    }
+}

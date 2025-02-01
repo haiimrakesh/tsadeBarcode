@@ -2,14 +2,37 @@
 @model Tsade.Barcode.RazorWeb.Pages.BarcodePrintLayoutModel
 @{
     ViewData["Title"] = "Barcode Request";
+    string logoUrl = Url.Content("~/images/logo.jpeg");
 }
 
-@for(int i = 0; i < 8; i++)
+<div class="container text-center">
+@for(int row = 0; row < 4; row++)
 {
-    <div class="barcode">
-        <div style="font-weight: bold; text-align: center;" >@Model.BarcodeResponse.CompanyName</div> <br/>
-        <span>Product : </span><span>@Model.BarcodeResponse.ProductName</span><br/>
-        <span>Price :</span><span>@Model.BarcodeResponse.Price</span><br/>
-        <img src="~/images/@(Model.BarcodeResponse.BarcodeText).gif" /><br/>
-    </div>
+      <div class="row">
+        @for(int col=0; col<4; col++)
+        {
+            <div class="col"  style="font-size: x-small;">
+                <table class="table table-borderless table-sm" style="width: 1.5in;">
+                    <tr>
+                        <td><img src="~/images/logo.jpeg" width="100%" /></td>
+                        <td style="text-align: left;">
+                            <span><strong>Product</strong></span><br/>
+                            <span>@Model.BarcodeRequest.ProductName</span><br/>
+                            <span><strong>Price</strong></span><br/>
+                            <span>@Model.BarcodeRequest.Price</span><br/>
+                        </td>
+                    </tr>
+                    <tr style="text-align: left;">
+                        <td colspan="2">@Model.BarcodeRequest.Description</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <img src="~/images/barcodes/@(Model.BarcodeRequest.BarcodeText).gif" width="100%" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+        </div>
 }
+</div>

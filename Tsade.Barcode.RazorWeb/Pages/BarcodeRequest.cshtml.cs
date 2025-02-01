@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Tsade.Barcode.RazorWeb.Model;
-using Tsade.Barcode.Web.Domain;
 
 namespace Tsade.Barcode.RazorWeb.Pages
 {
@@ -10,12 +9,17 @@ namespace Tsade.Barcode.RazorWeb.Pages
         [BindProperty]
         public BarcodeRequest? BarcodeRequest { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public string? BarcodeText { get; set; } = string.Empty;
+
         public IActionResult OnGet()
         {
             // Initialization code if needed
             BarcodeRequest = new BarcodeRequest();
+            BarcodeRequest.BarcodeText = BarcodeText!;
+            BarcodeRequest.CompanyName = "Tsade Collections";
             return Page();
-        }
+        }        
 
         public IActionResult OnPost()
         {
@@ -28,7 +32,7 @@ namespace Tsade.Barcode.RazorWeb.Pages
             // For example, generate a barcode image or save the data to a database
             //IronBarCodeGenerator.Generate(BarcodeRequest.BarcodeText, "../wwwroot/images/barcode.png");
 
-            return RedirectToPage("BarcodePrintLayout", "Print", new BarcodeResponse(BarcodeRequest, null)); // Redirect to a success page or another page
+            return RedirectToPage("BarcodePrintLayout", "Print", BarcodeRequest); // Redirect to a success page or another page
         }
     }
 }
