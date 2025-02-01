@@ -1,0 +1,15 @@
+@page
+@model Tsade.Barcode.RazorWeb.Pages.BarcodePrintLayoutModel
+@{
+    ViewData["Title"] = "Barcode Request";
+}
+
+@for(int i = 0; i < 8; i++)
+{
+    <div class="barcode">
+        <div style="font-weight: bold; text-align: center;" >@Model.BarcodeResponse.CompanyName</div> <br/>
+        <span>Product : </span><span>@Model.BarcodeResponse.ProductName</span><br/>
+        <span>Price :</span><span>@Model.BarcodeResponse.Price</span><br/>
+        <img src="~/images/@(Model.BarcodeResponse.BarcodeText).gif" /><br/>
+    </div>
+}
